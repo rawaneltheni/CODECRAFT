@@ -1,0 +1,46 @@
+This is a walkthrough of the code for documntation future reference (in case I forgot how I implemented it lol)
+
+### ** How does the encryption algorithm work? **
+
+The encryption function encrypts an uploaded image using a password provided by the user. The encryption combines pixel shuffling and XOR-based color channel encryption derived from the password.
+
+---
+
+1. **Check if an image is uploaded**
+
+   * If no image (`check_upload` is `False`), shows an error message and exits.
+
+2. **Ask user for a password**
+
+   * Prompts the user to enter a password (used as the encryption key).
+   * If no password is entered, an error message is shown and the function exits.
+
+3. **Generate encryption keys**
+
+   * Uses SHA-256 hashing on the password to create a 32-byte digest.
+   * Takes the **first three bytes** of the hash as three keys, one for each RGB channel.
+
+4. **Convert image to a NumPy array**
+
+   * Converts the uploaded image (`img`) into an array of pixel values.
+
+5. **Shuffle pixels (encryption step 1)**
+
+   * Sets a deterministic random seed using the first key.
+   * Flattens all pixels, randomly shuffles them, and reshapes the array back.
+
+6. **XOR each color channel (encryption step 2)**
+
+   * For each RGB channel, applies bitwise XOR (`^=`) with its corresponding key byte.
+
+7. **Convert back to an image**
+
+   * Converts the encrypted NumPy array back into a PIL Image object.
+
+8. **Update the GUI**
+
+   * Displays the encrypted image on the GUI.
+   * Enables the “Save” button (`save_button`).
+   * Shows a success message to the user.
+
+---
