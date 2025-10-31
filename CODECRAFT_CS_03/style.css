@@ -1,0 +1,100 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Background & Layout */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #333;
+  background: linear-gradient(-45deg, #844c58, #dfc2c5, #844c58, #dfc2c5);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  --x: 50%;
+  --y: 50%;
+  overflow: hidden;
+}
+
+/* Animated Gradient */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mouse-interactive glow effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at var(--x) var(--y),
+                              rgba(255, 255, 255, 0.15),
+                              transparent 70%);
+  pointer-events: none;
+  transition: background 0.1s;
+}
+
+/* Heading */
+h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #222;
+}
+
+/* Paragraph */
+p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Input Field */
+input[type="password"] {
+  padding: 10px 15px;
+  width: 400px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input[type="password"]:focus {
+  box-shadow: 0 0 8px rgba(132, 76, 88, 0.6);
+}
+
+/* Button */
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #844c58;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #6c3d48;
+  transform: scale(1.05);
+}
+
+/* Result Text */
+#result {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  color: #222;
+}
